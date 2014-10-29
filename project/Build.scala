@@ -33,10 +33,10 @@ object TrinityBuild extends Build {
       "Seasar Repository" at "http://maven.seasar.org/maven2/"
     ),
     libraryDependencies ++= Seq(
-      "org.scala-lang" % "scala-reflect" % "2.10.3",
-      "junit" % "junit" % "4.8.1" % "test",
+      "org.scala-lang" % "scala-reflect" % "2.10.4",
+      "junit" % "junit" % "4.11" % "test",
       "org.hamcrest" % "hamcrest-all" % "1.3" % "test",
-      "org.mockito" % "mockito-core" % "1.9.5" % "test",
+      "org.mockito" % "mockito-core" % "1.10.0" % "test",
       "org.specs2" %% "specs2-core" % "2.4.9" % "test",
       "org.specs2" %% "specs2-junit" % "2.4.9" % "test",
       "org.seasar.util" % "s2util" % "0.0.1"
@@ -84,15 +84,15 @@ object TrinityBuild extends Build {
     settings = commonSettings ++ Seq(
       name := "trinity-core",
       libraryDependencies ++= Seq(
-        "org.json4s" %% "json4s-jackson" % "3.2.2",
+        "org.json4s" %% "json4s-jackson" % "3.2.11",
         "org.sisioh" %% "scala-toolbox" % "0.0.8",
         "org.sisioh" %% "sisioh-config" % "0.0.3",
-        "org.slf4j" % "slf4j-api" % "1.6.6",
-        "org.slf4j" % "log4j-over-slf4j" % "1.6.6",
-        "org.slf4j" % "jul-to-slf4j" % "1.6.6",
-        "ch.qos.logback" % "logback-core" % "1.0.7" exclude("org.slf4j", "slf4j-api"),
-        "ch.qos.logback" % "logback-classic" % "1.0.7",
-        "commons-io" % "commons-io" % "1.3.2",
+        "org.slf4j" % "slf4j-api" % "1.7.7",
+        "org.slf4j" % "log4j-over-slf4j" % "1.7.7",
+        "org.slf4j" % "jul-to-slf4j" % "1.7.7",
+        "ch.qos.logback" % "logback-core" % "1.1.2" exclude("org.slf4j", "slf4j-api"),
+        "ch.qos.logback" % "logback-classic" % "1.1.2",
+        "commons-io" % "commons-io" % "2.4",
         "com.twitter" %% "finagle-core" % "6.22.0" excludeAll(
           ExclusionRule(organization = "log4j", name = "log4j"),
           ExclusionRule(organization = "org.slf4j", name = "slf4j-api"),
@@ -177,7 +177,7 @@ object TrinityBuild extends Build {
       name := "trinity-test",
       libraryDependencies ++= Seq(
         "org.hamcrest" % "hamcrest-all" % "1.3",
-        "org.mockito" % "mockito-core" % "1.9.5",
+        "org.mockito" % "mockito-core" % "1.10.0",
         "org.specs2" %% "specs2-core" % "2.4.9",
         "org.specs2" %% "specs2-junit" % "2.4.9"
       )
