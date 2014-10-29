@@ -62,7 +62,7 @@ class ServerImpl
    */
   protected def createTracer: Tracer = NullTracer
 
-  protected def createRuntimeEnviroment: RuntimeEnvironment = new RuntimeEnvironment(this)
+  protected def createRuntimeEnvironment: RuntimeEnvironment = new RuntimeEnvironment(this)
 
   private val defaultAdminHttpServicePort = 9990
 
@@ -202,7 +202,7 @@ class ServerImpl
       info(s"aciton = $action, routingFilter = $filter")
 
       if (serverConfig.statsEnabled) {
-        createAdminHttpService(createRuntimeEnviroment)
+        createAdminHttpService(createRuntimeEnvironment)
       }
 
       val service = buildService(environment, action)

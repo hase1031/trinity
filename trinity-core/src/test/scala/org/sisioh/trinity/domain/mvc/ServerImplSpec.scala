@@ -26,9 +26,11 @@ class ServerImplSpec extends Specification {
   class Setup(action: Option[Action[Request, Response]] = None)
     extends Around with Scope {
 
+    private val bindAddress = new InetSocketAddress(8080)
+
     val client = ClientBuilder()
       .codec(RichHttp[FinagleRequest](Http()))
-      .hosts(new InetSocketAddress(8080))
+      .hosts(bindAddress)
       .hostConnectionLimit(1)
       .build()
 
@@ -45,7 +47,7 @@ class ServerImplSpec extends Specification {
     }
 
     def around[T: AsResult](t: => T): Result = {
-      val server = Server(ServerConfig(), action = action, filter = None, globalSettings = None)
+      val server = Server(ServerConfig(bindAddress = Option(bindAddress)), action = action, filter = None, globalSettings = None)
       running(server)(AsResult(t))
     }
 
@@ -57,7 +59,7 @@ class ServerImplSpec extends Specification {
     "404 NOT FOUND" in new Setup(None) {
       val responseFuture = client(FinagleRequest())
       TAwait.result(responseFuture).getStatusCode() must_== 404
-      TAwait.result(responseFuture).getContent().toString(Charsets.UTF_8.toObject) must_== ""
+      TAwait.result(responseFuture).getContent().toString(Charsets.UTF_8.toObject) must_== "<!DOCTYPE html>\n<html>\n<head>\n    <title>Trinity</title>\n</head>\n<body>\n<li>\n    <ul>Not Found</ul>\n</li>\n</body>\n</html>"
     }
     "200 OK" in new Setup(
       Some(
