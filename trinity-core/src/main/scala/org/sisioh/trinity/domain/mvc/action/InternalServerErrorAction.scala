@@ -25,7 +25,6 @@ import scala.util.Try
 
 /**
  * Represents the action to returns the internal server error response.
->>>>>>> release/v1.0.7
  */
 case object InternalServerErrorAction extends Action[Request, Response] {
 
